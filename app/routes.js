@@ -38,27 +38,19 @@ module.exports = function(app) {
 
 	});
 
+  // update a todo
+
   app.put('/api/todos/:todo_id', function(req, res) {
-    var id = req.params.todo_id;
 
-    db.todo.findAndModify({
-      query:{_id: mongojs.ObjectId(id)},
-      update: {$set: {text: req.body.text}}, function(err, todo) {
-        if (err) {
-          res.send(err);
-        }
-      }
-    });
-
+  //get and return all the todos after you edit one
     Todo.find(function(err, todos) {
       if (err) {
-        res.send(err);
+        res.send(err)
       } else {
         res.json(todos);
-      }
+      };
     });
   });
-
 
 
 	// delete a todo
